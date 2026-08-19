@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Project Hub</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Background -->
+    <div class="background-glow glow-one"></div>
+    <div class="background-glow glow-two"></div>
+
+    <!-- Mobile Overlay -->
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+
+    <div class="app">
+
+        <!-- ================= SIDEBAR ================= -->
+
+        <aside class="sidebar" id="sidebar">
+
+            <div class="brand">
+                <div class="brand-icon">✦</div>
+
+                <div>
+                    <h1>Project Hub</h1>
+                    <span>Workspace</span>
+                </div>
+            </div>
+
+
+            <nav>
+
+                <div class="nav-label" data-i18n="workspace">
+                    WORKSPACE
+                </div>
+
+                <button class="nav-item active" data-view="dashboard">
+                    <span>⌂</span>
+                    <label data-i18n="dashboard">Dashboard</label>
+                </button>
+
+                <button class="nav-item" data-view="tasks">
+                    <span>✓</span>
+                    <label data-i18n="tasks">Tasks</label>
+                </button>
+
+                <button class="nav-item" data-view="projects">
+                    <span>▦</span>
+                    <label data-i18n="projects">Projects</label>
+                </button>
+
+                <button class="nav-item" data-view="notes">
+                    <span>✎</span>
+                    <label data-i18n="notes">Notes</label>
+                </button>
+
+                <button class="nav-item" data-view="goals">
+                    <span>◎</span>
+                    <label data-i18n="goals">Goals</label>
+                </button>
+
+
+                <div class="nav-label" data-i18n="tools">
+                    TOOLS
+                </div>
+
+                <button class="nav-item" data-view="focus">
+                    <span>◷</span>
+                    <label data-i18n="focus">Focus Timer</label>
+                </button>
+
+            </nav>
+
+
+            <div class="sidebar-bottom">
+
+                <button class="nav-item" id="themeButton">
+                    <span id="themeIcon">☾</span>
+                    <label data-i18n="theme">Theme</label>
+                </button>
+
+                <button class="nav-item" id="resetButton">
+                    <span>↻</span>
+                    <label data-i18n="reset">Reset Data</label>
+                </button>
+
+            </div>
+
+        </aside>
+
+
+        <!-- ================= MAIN ================= -->
+
+        <main class="main">
+
+            <!-- Topbar -->
+
+            <header class="topbar">
+
+                <div class="page-heading">
+
+                    <button class="mobile-menu" id="menuButton">
+                        ☰
+                    </button>
+
+                    <div>
+                        <h2 id="pageTitle">Dashboard</h2>
+                        <p id="pageSubtitle">
+                            Welcome back. Let's get things done.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="top-actions">
+
+                    <!-- Language -->
+
+                    <select id="languageSelect" class="language-select">
+                        <option value="en">🇬🇧 EN</option>
+                        <option value="tr">🇹🇷 TR</option>
+                        <option value="ar">🇸🇦 AR</option>
+                    </select>
+
+
+                    <!-- Notifications -->
+
+                    <button class="top-button" id="notificationButton">
+                        🔔
+                        <span class="notification-dot"></span>
+                    </button>
+
+
+                    <!-- Add -->
+
+                    <button class="add-task-top" id="globalAddButton">
+                        <span>＋</span>
+                        <span data-i18n="newTask">New Task</span>
+                    </button>
+
+
+                    <div class="avatar">
+                        O
+                    </div>
+
+                </div>
+
+            </header>
+
+
+            <!-- ================= DASHBOARD ================= -->
+
+            <section class="view active" id="dashboard">
+
+                <div class="welcome-card">
+
+                    <div>
+
+                        <span class="eyebrow" data-i18n="overview">
+                            YOUR OVERVIEW
+                        </span>
+
+                        <h2>
+                            <span data-i18n="build">Build something</span>
+                            <span class="gradient-text" data-i18n="amazing">
+                                amazing.
+                            </span>
+                        </h2>
+
+                        <p data-i18n="dashboardMessage">
+                            Keep your projects organized and your goals moving forward.
+                        </p>
+
+                    </div>
+
+                    <div class="welcome-symbol">
+                        ✦
+                    </div>
+
+                </div>
+
+
+                <!-- Stats -->
+
+                <div class="stats-grid">
+
+                    <div class="stat-card">
+                        <div class="stat-icon purple">✓</div>
+                        <span data-i18n="totalTasks">Total Tasks</span>
+                        <strong id="totalTasks">0</strong>
+                    </div>
+
+
+                    <div class="stat-card">
+                        <div class="stat-icon cyan">◈</div>
+                        <span data-i18n="inProgress">In Progress</span>
+                        <strong id="progressTasks">0</strong>
+                    </div>
+
+
+                    <div class="stat-card">
+                        <div class="stat-icon green">✓</div>
+                        <span data-i18n="completed">Completed</span>
+                        <strong id="completedTasks">0</strong>
+                    </div>
+
+
+                    <div class="stat-card">
+                        <div class="stat-icon orange">◎</div>
+                        <span data-i18n="goals">Goals</span>
+                        <strong id="totalGoals">0</strong>
+                    </div>
+
+                </div>
+
+
+                <div class="dashboard-grid">
+
+                    <!-- Progress -->
+
+                    <div class="panel">
+
+                        <div class="panel-header">
+
+                            <div>
+                                <h3 data-i18n="productivity">
+                                    Productivity
+                                </h3>
+
+                                <span data-i18n="completionRate">
+                                    Overall completion rate
+                                </span>
+                            </div>
+
+                            <strong id="completionPercent">
+                                0%
+                            </strong>
+
+                        </div>
+
+
+                        <div class="large-progress">
+
+                            <div
+                                class="large-progress-fill"
+                                id="completionBar">
+                            </div>
+
+                        </div>
+
+
+                        <div class="progress-bottom">
+
+                            <span id="completionText">
+                                0 of 0 tasks completed
+                            </span>
+
+                            <span id="productivityMessage">
+                                Start your first task 🚀
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Quick Actions -->
+
+                    <div class="panel">
+
+                        <div class="panel-header">
+
+                            <div>
+                                <h3 data-i18n="quickActions">
+                                    Quick Actions
+                                </h3>
+
+                                <span data-i18n="getStarted">
+                                    Jump right in
+                                </span>
+                            </div>
+
+                        </div>
+
+
+                        <div class="quick-actions">
+
+                            <button id="quickTask">
+                                <span>＋</span>
+                                <label data-i18n="createTask">
+                                    Create Task
+                                </label>
+                            </button>
+
+                            <button id="quickNote">
+                                <span>✎</span>
+                                <label data-i18n="createNote">
+                                    Create Note
+                                </label>
+                            </button>
+
+                            <button id="quickGoal">
+                                <span>◎</span>
+                                <label data-i18n="createGoal">
+                                    Create Goal
+                                </label>
+                            </button>
+
+                            <button id="quickFocus">
+                                <span>◷</span>
+                                <label data-i18n="startFocus">
+                                    Start Focus
+                                </label>
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Recent Tasks -->
+
+                <div class="panel recent-panel">
+
+                    <div class="panel-header">
+
+                        <div>
+                            <h3 data-i18n="recentTasks">
+                                Recent Tasks
+                            </h3>
+
+                            <span data-i18n="latestActivity">
+                                Your latest activity
+                            </span>
+                        </div>
+
+                        <button
+                            class="text-button"
+                            data-view-target="tasks"
+                            data-i18n="viewAll">
+                            View all
+                        </button>
+
+                    </div>
+
+                    <div id="recentTasks" class="recent-list"></div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= TASKS ================= -->
+
+            <section class="view" id="tasks">
+
+                <div class="section-toolbar">
+
+                    <div>
+
+                        <h2 data-i18n="taskBoard">
+                            Task Board
+                        </h2>
+
+                        <p data-i18n="dragTasks">
+                            Drag tasks between columns.
+                        </p>
+
+                    </div>
+
+
+                    <div class="toolbar-actions">
+
+                        <div class="search-box">
+                            🔎
+                            <input
+                                type="text"
+                                id="taskSearch"
+                                data-placeholder="searchTasks"
+                                placeholder="Search tasks...">
+                        </div>
+
+                        <select id="priorityFilter" class="filter-select">
+                            <option value="all" data-i18n="allPriorities">
+                                All priorities
+                            </option>
+
+                            <option value="high" data-i18n="high">
+                                High
+                            </option>
+
+                            <option value="medium" data-i18n="medium">
+                                Medium
+                            </option>
+
+                            <option value="low" data-i18n="low">
+                                Low
+                            </option>
+                        </select>
+
+                        <button class="primary-button" id="addTaskButton">
+                            ＋
+                            <span data-i18n="newTask">
+                                New Task
+                            </span>
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="kanban">
+
+                    <!-- TODO -->
+
+                    <div class="kanban-column" data-status="todo">
+
+                        <div class="column-header">
+
+                            <div>
+                                <span class="status-dot todo"></span>
+                                <strong data-i18n="todo">
+                                    To Do
+                                </strong>
+                            </div>
+
+                            <span class="task-count" id="todoCount">
+                                0
+                            </span>
+
+                        </div>
+
+                        <div
+                            class="task-container"
+                            id="todoContainer">
+                        </div>
+
+                    </div>
+
+
+                    <!-- PROGRESS -->
+
+                    <div class="kanban-column" data-status="progress">
+
+                        <div class="column-header">
+
+                            <div>
+                                <span class="status-dot progress"></span>
+                                <strong data-i18n="inProgress">
+                                    In Progress
+                                </strong>
+                            </div>
+
+                            <span class="task-count" id="progressCount">
+                                0
+                            </span>
+
+                        </div>
+
+                        <div
+                            class="task-container"
+                            id="progressContainer">
+                        </div>
+
+                    </div>
+
+
+                    <!-- DONE -->
+
+                    <div class="kanban-column" data-status="done">
+
+                        <div class="column-header">
+
+                            <div>
+                                <span class="status-dot done"></span>
+                                <strong data-i18n="completed">
+                                    Completed
+                                </strong>
+                            </div>
+
+                            <span class="task-count" id="doneCount">
+                                0
+                            </span>
+
+                        </div>
+
+                        <div
+                            class="task-container"
+                            id="doneContainer">
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= PROJECTS ================= -->
+
+            <section class="view" id="projects">
+
+                <div class="section-toolbar">
+
+                    <div>
+                        <h2 data-i18n="projects">
+                            Projects
+                        </h2>
+
+                        <p data-i18n="projectsDescription">
+                            Organize your work into projects.
+                        </p>
+                    </div>
+
+                    <button class="primary-button" id="addProjectButton">
+                        ＋
+                        <span data-i18n="newProject">
+                            New Project
+                        </span>
+                    </button>
+
+                </div>
+
+
+                <div class="project-grid" id="projectGrid"></div>
+
+            </section>
+
+
+            <!-- ================= NOTES ================= -->
+
+            <section class="view" id="notes">
+
+                <div class="section-toolbar">
+
+                    <div>
+                        <h2 data-i18n="notes">
+                            Notes
+                        </h2>
+
+                        <p data-i18n="notesDescription">
+                            Capture ideas before they disappear.
+                        </p>
+                    </div>
+
+                    <button class="primary-button" id="newNoteButton">
+                        ＋
+                        <span data-i18n="newNote">
+                            New Note
+                        </span>
+                    </button>
+
+                </div>
+
+
+                <div class="notes-layout">
+
+                    <div class="panel notes-sidebar">
+
+                        <div id="notesList"></div>
+
+                    </div>
+
+
+                    <div class="panel note-editor">
+
+                        <input
+                            id="noteTitle"
+                            class="note-title"
+                            data-placeholder="noteTitle"
+                            placeholder="Note title...">
+
+                        <textarea
+                            id="noteBody"
+                            class="note-body"
+                            data-placeholder="writeNote"
+                            placeholder="Start writing...">
+                        </textarea>
+
+                        <div class="note-footer">
+
+                            <span id="noteSaved">
+                                Saved
+                            </span>
+
+                            <button
+                                class="danger-button"
+                                id="deleteNoteButton"
+                                data-i18n="deleteNote">
+                                Delete Note
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= GOALS ================= -->
+
+            <section class="view" id="goals">
+
+                <div class="section-toolbar">
+
+                    <div>
+                        <h2 data-i18n="goals">
+                            Goals
+                        </h2>
+
+                        <p data-i18n="goalsDescription">
+                            Turn big ideas into measurable progress.
+                        </p>
+                    </div>
+
+                    <button class="primary-button" id="addGoalButton">
+                        ＋
+                        <span data-i18n="newGoal">
+                            New Goal
+                        </span>
+                    </button>
+
+                </div>
+
+
+                <div class="goals-grid" id="goalsGrid"></div>
+
+            </section>
+
+
+            <!-- ================= FOCUS ================= -->
+
+            <section class="view" id="focus">
+
+                <div class="focus-layout">
+
+                    <div class="focus-card">
+
+                        <span class="eyebrow" data-i18n="focusMode">
+                            FOCUS MODE
+                        </span>
+
+                        <h2 data-i18n="focusTitle">
+                            Deep work starts now.
+                        </h2>
+
+                        <div
+                            class="timer"
+                            id="timer">
+                            25:00
+                        </div>
+
+
+                        <div class="timer-mode">
+
+                            <button
+                                class="timer-mode-button active"
+                                data-minutes="25">
+                                25
+                            </button>
+
+                            <button
+                                class="timer-mode-button"
+                                data-minutes="5">
+                                5
+                            </button>
+
+                            <button
+                                class="timer-mode-button"
+                                data-minutes="15">
+                                15
+                            </button>
+
+                        </div>
+
+
+                        <div class="timer-controls">
+
+                            <button
+                                class="primary-button"
+                                id="timerStart">
+                                ▶
+                                <span data-i18n="start">
+                                    Start
+                                </span>
+                            </button>
+
+                            <button
+                                class="secondary-button"
+                                id="timerReset">
+                                ↻
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="panel focus-info">
+
+                        <h3 data-i18n="focusTips">
+                            Focus Tips
+                        </h3>
+
+                        <div class="tip">
+                            <span>01</span>
+                            <p data-i18n="tipOne">
+                                Put your phone away.
+                            </p>
+                        </div>
+
+                        <div class="tip">
+                            <span>02</span>
+                            <p data-i18n="tipTwo">
+                                Pick one task to focus on.
+                            </p>
+                        </div>
+
+                        <div class="tip">
+                            <span>03</span>
+                            <p data-i18n="tipThree">
+                                Take a short break when the timer ends.
+                            </p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+    <!-- ================= TASK MODAL ================= -->
+
+    <div class="modal-backdrop" id="taskModal">
+
+        <div class="modal">
+
+            <div class="modal-header">
+
+                <div>
+                    <span class="eyebrow">TASK</span>
+                    <h2 id="taskModalTitle">Create Task</h2>
+                </div>
+
+                <button class="close-modal" data-close="taskModal">
+                    ×
+                </button>
+
+            </div>
+
+
+            <form id="taskForm">
+
+                <label data-i18n="taskName">
+                    Task Name
+                </label>
+
+                <input
+                    id="taskName"
+                    required
+                    data-placeholder="taskNamePlaceholder"
+                    placeholder="What needs to be done?">
+
+
+                <label data-i18n="description">
+                    Description
+                </label>
+
+                <textarea
+                    id="taskDescription"
+                    data-placeholder="descriptionPlaceholder"
+                    placeholder="Add some details...">
+                </textarea>
+
+
+                <div class="form-row">
+
+                    <div>
+
+                        <label data-i18n="priority">
+                            Priority
+                        </label>
+
+                        <select id="taskPriority">
+
+                            <option value="low" data-i18n="low">
+                                Low
+                            </option>
+
+                            <option value="medium" selected data-i18n="medium">
+                                Medium
+                            </option>
+
+                            <option value="high" data-i18n="high">
+                                High
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div>
+
+                        <label data-i18n="dueDate">
+                            Due Date
+                        </label>
+
+                        <input
+                            type="date"
+                            id="taskDate">
+
+                    </div>
+
+                </div>
+
+
+                <div class="modal-actions">
+
+                    <button
+                        type="button"
+                        class="secondary-button"
+                        data-close="taskModal"
+                        data-i18n="cancel">
+                        Cancel
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="primary-button"
+                        data-i18n="saveTask">
+                        Save Task
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= GOAL MODAL ================= -->
+
+    <div class="modal-backdrop" id="goalModal">
+
+        <div class="modal">
+
+            <div class="modal-header">
+
+                <div>
+                    <span class="eyebrow">GOAL</span>
+                    <h2 data-i18n="newGoal">
+                        New Goal
+                    </h2>
+                </div>
+
+                <button class="close-modal" data-close="goalModal">
+                    ×
+                </button>
+
+            </div>
+
+
+            <form id="goalForm">
+
+                <label data-i18n="goalName">
+                    Goal Name
+                </label>
+
+                <input
+                    id="goalName"
+                    required
+                    data-placeholder="goalPlaceholder"
+                    placeholder="What do you want to achieve?">
+
+
+                <label data-i18n="target">
+                    Target
+                </label>
+
+                <input
+                    type="number"
+                    id="goalTarget"
+                    min="1"
+                    value="10">
+
+
+                <div class="modal-actions">
+
+                    <button
+                        type="button"
+                        class="secondary-button"
+                        data-close="goalModal"
+                        data-i18n="cancel">
+                        Cancel
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="primary-button"
+                        data-i18n="createGoal">
+                        Create Goal
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= TOAST ================= -->
+
+    <div class="toast" id="toast">
+        <span id="toastIcon">✓</span>
+        <span id="toastMessage">Done</span>
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
